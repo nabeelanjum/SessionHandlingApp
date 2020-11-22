@@ -33,7 +33,7 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: normalizeX(10)
+    paddingHorizontal: normalizeX(12)
   },
   body: {
     flex: 1,

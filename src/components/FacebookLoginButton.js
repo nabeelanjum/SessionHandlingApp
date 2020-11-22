@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   loginBtn: {
     flexDirection: 'row',
     marginTop: SCREEN_HEIGHT / 4,
-    width: '85%',
+    width: '100%',
     height: normalizeY(42) > 55 ? 55 : normalizeY(42),
     alignItems: 'center',
     justifyContent: 'center',

@@ -8,7 +8,7 @@ import { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from "re
 import { useDispatch } from 'react-redux';
 import FacebookLoginButton from '../components/FacebookLoginButton';
 import { LOGIN_SUCCESS } from '../store/actionTypes';
-import { normalizeY } from '../utils/functions';
+import { normalizeX, normalizeY } from '../utils/functions';
 
 const fbLogo = require('../assets/images/fbLogo.png');
 
@@ -62,7 +62,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: normalizeX(12)
   },
   fbLogoImg: {
     marginTop: normalizeY(30),

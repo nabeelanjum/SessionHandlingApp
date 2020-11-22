@@ -5,51 +5,58 @@ import {
   Image
 } from 'react-native';
 import { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
+import { useDispatch } from 'react-redux';
 import FacebookLoginButton from '../components/FacebookLoginButton';
+import { LOGIN_SUCCESS } from '../store/actionTypes';
 import { normalizeY } from '../utils/functions';
 
 const fbLogo = require('../assets/images/fbLogo.png');
 
-const loginWithFB = async () => {
-  try {
-    result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
-    if (!result.isCancelled) {
-      const accessData = await AccessToken.getCurrentAccessToken();
-      console.log('ACCESS DATA:', accessData);
-      getInfoFromToken(accessData.accessToken);
-    }
-  } catch (e) {
-    console.log('ERROE IN FB LOGIN:', e);
-  }
-}
-
-const getInfoFromToken = (token) => {
-  const PROFILE_REQUEST_PARAMS = {
-    fields: {
-      string: 'id,name,email',
-    },
-  };
-  const profileRequest = new GraphRequest(
-    '/me',
-    { token, parameters: PROFILE_REQUEST_PARAMS },
-    (error, userInfo) => {
-      if (error) {
-        console.log('login info has error:', error);
-      } else {
-        console.log('result:', userInfo);
-      }
-    },
-  );
-  new GraphRequestManager().addRequest(profileRequest).start();
-};
-
 const Login = () => {
+
+  const dispatch = useDispatch();
+
+  loginWithFB = async () => {
+    try {
+      result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      if (!result.isCancelled) {
+        const accessData = await AccessToken.getCurrentAccessToken();
+        console.log('ACCESS DATA:', accessData);
+        getInfoFromToken(accessData.accessToken);
+      }
+    } catch (e) {
+      console.log('ERROE IN FB LOGIN:', e);
+    }
+  }
+
+  getInfoFromToken = (token) => {
+    const PROFILE_REQUEST_PARAMS = {
+      fields: {
+        string: 'id,name,email',
+      },
+    };
+    const profileRequest = new GraphRequest(
+      '/me',
+      { token, parameters: PROFILE_REQUEST_PARAMS },
+      (error, userInfo) => {
+        if (error) {
+          console.log('login info has error:', error);
+        } else {
+          console.log('result:', userInfo);
+          dispatch({ type: LOGIN_SUCCESS, payload: userInfo });
+        }
+      },
+    );
+    new GraphRequestManager().addRequest(profileRequest).start();
+  };
+
   return (
     <View style={styles.container}>
       <Image style={styles.fbLogoImg} source={fbLogo} />
       <FacebookLoginButton onPress={loginWithFB} />
     </View>
   )
+
 }
 
 const styles = StyleSheet.create({

@@ -4,8 +4,8 @@ import {
   Image,
   View,
   StyleSheet,
-  Text,
 } from 'react-native';
+import Text from './Text';
 import { normalizeFont, normalizeY } from '../utils/functions';
 import colors from '../utils/colors';
 import { SCREEN_HEIGHT } from '../utils/constants';
@@ -15,7 +15,7 @@ const fbIcon = require('../assets/images/fbLogo.png');
 const FacebookLoginButton = ({ onPress }) => (
   <Pressable style={styles.loginBtn} onPress={onPress}>
     <Image source={fbIcon} style={styles.fbIcon} />
-    <Text style={styles.loginBtnText}>Login with Facebook</Text>
+    <Text bold style={styles.loginBtnText}>Login with Facebook</Text>
   </Pressable>
 )
 

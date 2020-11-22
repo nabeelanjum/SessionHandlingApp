@@ -1,10 +1,10 @@
 import React from 'react';
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../components/Button';
+import { Button, Text } from '../components';
 import { LOGOUT } from '../store/actionTypes';
 import colors from '../utils/colors';
-import { normalizeX } from '../utils/functions';
+import { normalizeFont, normalizeX, normalizeY } from '../utils/functions';
 
 const Profile = () => {
 
@@ -18,11 +18,11 @@ const Profile = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.body}>
           <Text style={styles.nameText}>Hi {name}</Text>
-          <Text>You have logged into the app with Facebook, you can tab the button below to Logout</Text>
+          <Text>You have logged into the app with Facebook, you can tap the button below to Logout</Text>
         </View>
         <Button onPress={logout} title='Logout' style={styles.logoutButton} />
       </View>
@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   nameText: {
-    fontSize: 28,
+    fontSize: normalizeFont(26, true),
     fontWeight: 'bold'
   },
   logoutButton: {
+    marginVertical: normalizeY(12),
     backgroundColor: colors.RED,
   }
 })

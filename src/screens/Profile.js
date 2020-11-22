@@ -14,7 +14,7 @@ const Profile = () => {
   const { name } = user;
 
   const logout = () => {
-    dispatch({ type: LOGOUT, payload: {} })
+    dispatch({ type: LOGOUT });
   }
 
   return (
@@ -33,7 +33,7 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: normalizeX(12)
+    padding: normalizeX(12)
   },
   body: {
     flex: 1,
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   logoutButton: {
-    marginVertical: normalizeY(12),
     backgroundColor: colors.RED,
   }
 })

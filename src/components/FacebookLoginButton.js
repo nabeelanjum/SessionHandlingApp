@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { normalizeFont, normalizeY } from '../utils/functions';
 import colors from '../utils/colors';
+import { SCREEN_HEIGHT } from '../utils/constants';
 
 const fbIcon = require('../assets/images/fbLogo.png');
 
@@ -21,11 +22,11 @@ const FacebookLoginButton = ({ onPress }) => (
 const styles = StyleSheet.create({
   loginBtn: {
     flexDirection: 'row',
-    width: '80%',
+    marginTop: SCREEN_HEIGHT / 4,
+    width: '85%',
     height: normalizeY(42) > 55 ? 55 : normalizeY(42),
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
     borderRadius: 50,
     shadowOffset: {
       width: 0,

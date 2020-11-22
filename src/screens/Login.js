@@ -16,9 +16,9 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  loginWithFB = async () => {
+  const loginWithFB = async () => {
     try {
-      result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
       if (!result.isCancelled) {
         const accessData = await AccessToken.getCurrentAccessToken();
         console.log('ACCESS DATA:', accessData);
@@ -26,10 +26,11 @@ const Login = () => {
       }
     } catch (e) {
       console.log('ERROE IN FB LOGIN:', e);
+      alert(e.toString());
     }
   }
 
-  getInfoFromToken = (token) => {
+  const getInfoFromToken = (token) => {
     const PROFILE_REQUEST_PARAMS = {
       fields: {
         string: 'id,name,email',
@@ -41,8 +42,8 @@ const Login = () => {
       (error, userInfo) => {
         if (error) {
           console.log('login info has error:', error);
+          alert(error.toString());
         } else {
-          console.log('result:', userInfo);
           dispatch({ type: LOGIN_SUCCESS, payload: userInfo });
         }
       },

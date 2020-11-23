@@ -4,7 +4,7 @@ import colors from '../utils/colors';
 
 export default Loader = () => (
   <View style={styles.loaderView}>
-    <ActivityIndicator size={'large'} />
+    <ActivityIndicator size={'large'} color={colors.WHITE} />
   </View>
 )
 

@@ -28,12 +28,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    shadowOffset: {
-      width: 0,
-      height: 0
-    },
-    shadowOpacity: 0.3,
-    elevation: 5,
     backgroundColor: colors.FACEBOOK,
   },
   loginBtnText: {
